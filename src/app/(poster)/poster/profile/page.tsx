@@ -262,7 +262,7 @@ const RecruiterProfilePage = () => {
                     {/* Cover */}
                     <div className="relative h-44 bg-gradient-to-r from-blue-600 to-indigo-700">
                         <video
-                            // src="https://el.phncdn.com/pics/gifs/052/587/651/52587651a.webm"
+                            // src=""
                             autoPlay
                             muted
                             loop
