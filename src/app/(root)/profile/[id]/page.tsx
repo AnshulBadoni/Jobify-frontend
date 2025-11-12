@@ -6,7 +6,6 @@ import { cryptoId } from "@/app/utility";
 import { Download, RefreshCw, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
-// import { allvids } from "../../../../../collections";
 
 type Application = {
     id: number;
