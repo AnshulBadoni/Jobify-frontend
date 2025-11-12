@@ -195,7 +195,7 @@ export default function ChatPage() {
                         {/* Background cover */}
                         <div className="relative">
                             <img
-                                src="https://el.phncdn.com/gif/15762622.gif"
+                                src=""
                                 alt=""
                                 className="w-full h-48 object-cover rounded-t-2xl"
                             />
