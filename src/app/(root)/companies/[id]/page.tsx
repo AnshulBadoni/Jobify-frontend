@@ -43,7 +43,7 @@ const reviews = [
 ];
 
 const mediaImages = [
-    "https://w.wallhaven.cc/full/je/wallhaven-jexovp.png"
+    "https://w.wallhxovp.png"
 ];
 
 export default function CompanyDashboardPage() {
