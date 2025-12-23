@@ -1,5 +1,5 @@
-// const API_URL = 'http://192.168.5.148:3001/auth';
-const API_URL = 'http://192.168.29.48:3001/auth';
+// get url from .env
+const API_URL = process.env.NEXT_PUBLIC_API_URL + '/auth';
 
 interface User {
     username: string;

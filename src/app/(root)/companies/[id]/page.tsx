@@ -43,7 +43,7 @@ const reviews = [
 ];
 
 const mediaImages = [
-    "https://w.wallhaven.cc/full/je/wallhaven-jexovp.png"
+    "https://jexovp.png"
 ];
 
 export default function CompanyDashboardPage() {
@@ -62,8 +62,7 @@ export default function CompanyDashboardPage() {
         <div className="min-h-screen bg-gray-50 dark:bg-neutral-950 font-sans">
             {/* Banner */}
             <div className="relative h-40">
-                <img src="https://w.wallhaven.cc/full/r2/wallhaven-r2lj81.jpg" className="w-full h-full rounded-2xl object-cover opacity-90" />
-                {/* <video src="https://el.phncdn.com/pics/gifs/002/984/951/2984951a.webm" autoPlay loop muted className="w-full h-full rounded-2xl object-cover"></video> */}
+                <img src="https://w.n-r2lj81.jpg" className="w-full h-full rounded-2xl object-cover opacity-90" />
                 <div className="absolute bottom-0 left-44 -translate-x-1/2 transform">
                     <img src={companyData.logo} alt={companyData.name} className="sm:w-32 w-24 object-contain rounded-full border-4 border-white dark:border-neutral-900 shadow-lg -mb-14 bg-white dark:bg-neutral-900 p-3" />
                 </div>

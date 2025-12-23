@@ -1,7 +1,7 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL + '/profile';
+const API_URL = process.env.NEXT_PUBLIC_API_URL + '/company';
 
-export const getMe = async () => {
-    const response = await fetch(`${API_URL}/me`, {
+export const getCompanies = async () => {
+    const response = await fetch(`${API_URL}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export const getMe = async () => {
     return response.json();
 };
 
-export const getProfile = async (id?: string) => {
+export const getJob = async (id?: string) => {
     const response = await fetch(`${API_URL}/profile`, {
         method: "GET",
         headers: {
@@ -22,24 +22,9 @@ export const getProfile = async (id?: string) => {
     return response.json();
 }
 
-
-export const getSummary = async (usernames: string, refresh?: boolean) => {
-    const response = await fetch(`${API_URL}/summary`, {
+export const postJob = async (formData: any) => {
+    const response = await fetch(`${API_URL}/postJob`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ usernames, refresh }),
-    });
-    return response.json();
-};
-
-export const updateProfile = async (formData: any) => {
-    //destructure the formData
-
-    const response = await fetch(`${API_URL}/profile`, {
-        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
