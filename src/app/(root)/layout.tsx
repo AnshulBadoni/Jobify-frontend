@@ -17,7 +17,7 @@ export default async function SeekerLayout({ children }: { children: React.React
       headers: { cookie: `jwt=${token}` },
       cache: "no-cache",
     });
-    console.log(res,"res)
+    console.log(res,"res")
     if (res.status == 200) {
       const data = await res.json();
       user = data?.data;
