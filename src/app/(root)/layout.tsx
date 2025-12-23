@@ -12,10 +12,12 @@ export default async function SeekerLayout({ children }: { children: React.React
 
   let user = null;
   try {
+    console.log(token,"token")
     const res = await fetch(`${url}/profile/me`, {
       headers: { cookie: `jwt=${token}` },
       cache: "no-cache",
     });
+    console.log(res,"res)
     if (res.status == 200) {
       const data = await res.json();
       user = data?.data;
