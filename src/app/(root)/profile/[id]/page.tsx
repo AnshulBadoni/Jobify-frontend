@@ -4,7 +4,8 @@ import Input from "@/app/components/Input";
 import TextArea from "@/app/components/TextArea";
 import { cryptoId } from "@/app/lib";
 import { Download, RefreshCw, X } from "lucide-react";
-import React, { useEffect, useState, useCallback } from "react";
+import { useParams } from "next/navigation";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 type Application = {
     id: number;
