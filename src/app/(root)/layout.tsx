@@ -26,7 +26,7 @@ export default async function SeekerLayout({ children }: { children: React.React
     }
   } catch (error) {
     console.log("Error fetching user", error);
-    redirect("/signin");
+    // redirect("/signin");
   }
 
   return (
