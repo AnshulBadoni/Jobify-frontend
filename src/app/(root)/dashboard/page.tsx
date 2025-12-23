@@ -7,6 +7,7 @@ import { User } from "@/app/types";
 export default async function Page() {
     const cookieStore = cookies();
     const token = (await cookieStore).get("jwt")?.value as string;
+    console.log("token:",token)
     let user;
     try {
         user = jwt.verify(token, process.env.JWT_SECRET as string) as User;
