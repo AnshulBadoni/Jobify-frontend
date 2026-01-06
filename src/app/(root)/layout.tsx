@@ -12,6 +12,7 @@ export default async function SeekerLayout({ children }: { children: React.React
 
   let user = null;
   try {
+    console.log(token,"token")
     const res = await fetch(`${url}/profile/me`, {
       headers: { cookie: `jwt=${token}` },
       cache: "no-cache",
@@ -21,11 +22,12 @@ export default async function SeekerLayout({ children }: { children: React.React
       const data = await res.json();
       user = data?.data;
     } else {
-      redirect("/signin");
+      console.log("gone")
+      // redirect("/signin");
     }
   } catch (error) {
     console.log("Error fetching user", error);
-    redirect("/signin");
+    // redirect("/signin");
   }
 
   return (
