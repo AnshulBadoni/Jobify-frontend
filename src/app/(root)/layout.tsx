@@ -16,6 +16,7 @@ export default async function SeekerLayout({ children }: { children: React.React
       headers: { cookie: `jwt=${token}` },
       cache: "no-cache",
     });
+    console.log("Profile response status:", res, res.status);
     if (res.status == 200) {
       const data = await res.json();
       user = data?.data;
@@ -28,16 +29,16 @@ export default async function SeekerLayout({ children }: { children: React.React
   }
 
   return (
-      <div className="text-gray-900 bg-stone-100 dark:bg-black">
-        <main>
-          <Navbar />
-          <div className="px-2">
-            <ToastProvider>
-              <div className="lg:mb-2 mb-16 mt-2">{children}</div>
-              <FloatingWidget />
-            </ToastProvider>
-          </div>
-        </main>
-      </div>
+    <div className="text-gray-900 bg-stone-100 dark:bg-black">
+      <main>
+        <Navbar />
+        <div className="px-2">
+          <ToastProvider>
+            <div className="lg:mb-2 mb-16 mt-2">{children}</div>
+            <FloatingWidget />
+          </ToastProvider>
+        </div>
+      </main>
+    </div>
   );
 }

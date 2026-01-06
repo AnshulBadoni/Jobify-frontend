@@ -9,9 +9,12 @@ export default async function Page() {
     const token = (await cookieStore).get("jwt")?.value as string;
     let user;
     try {
-        user = jwt.verify(token, process.env.JWT_SECRET as string) as User;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+        console.log(decoded);
+        user = decoded as User;
     } catch (err) {
-        return <p>Invalid or expired token</p>;
+        console.error("JWT ERROR:", err);
+        throw err;
     }
 
     return (
