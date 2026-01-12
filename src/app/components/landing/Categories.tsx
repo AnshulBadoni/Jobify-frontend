@@ -1,5 +1,5 @@
 import React from 'react';
-import { CATEGORIES } from '../constants';
+import { CATEGORIES } from '../../constants';
 
 const Categories: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Categories: React.FC = () => {
         <div className="text-center mb-16">
           <span className="text-primary text-sm font-bold uppercase tracking-wider">Category</span>
           <h2 className="text-4xl font-bold text-dark mt-2 mb-6">Find Skills That Suit Your Interests</h2>
-          
+
           <div className="flex justify-center gap-8 text-sm font-medium">
             <button className="text-primary border-b-2 border-primary pb-1">Near You</button>
             <button className="text-gray-400 hover:text-dark transition-colors">Top Skills</button>
@@ -27,7 +27,7 @@ const Categories: React.FC = () => {
               <h3 className="text-lg font-bold text-dark mb-1 group-hover:text-primary transition-colors">{cat.title}</h3>
               <div className="flex justify-between items-center text-sm">
                 <span className="text-gray-500 flex items-center gap-1">
-                   <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div> {cat.jobs} Jobs
+                  <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div> {cat.jobs} Jobs
                 </span>
                 <span className="font-semibold text-gray-900">{cat.salary}<span className="text-gray-400 font-normal"> /Month</span></span>
               </div>
