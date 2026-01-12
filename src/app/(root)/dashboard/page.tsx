@@ -1,26 +1,20 @@
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
 import Poster from "@/app/components/dashboard/Poster";
 import Seeker from "@/app/components/dashboard/Seeker";
-import { User } from "@/app/types";
+import { cookies } from "next/headers";
 
 export default async function Page() {
-    // const cookieStore = cookies();
-    // const token = (await cookieStore).get("jwt")?.value as string;
-    // console.log("token:",token)
-    // let user;
-    // try {
-    //     user = jwt.verify(token, process.env.JWT_SECRET as string) as User;
-    // } catch (err) {
-    //     return <p>Invalid or expired token</p>;
-    // }
+    const cookieHeader = cookies().toString();
+    const res = await fetch("https://jobify-backend-pgum.onrender.com/profile/me", {
+        headers: {
+            Cookie: cookieHeader,
+        },
+        cache: "no-store",
+    });
+    if (!res.ok) return <p>Unauthorized</p>;
 
-    return (
-        <>
-            {/* {user.role.toLowerCase() == "seeker" && <Seeker />} */}
-            {/* {user.role.toLowerCase() == "poster" && <Poster />} */}
-            {/* {user.role.toLowerCase() == "admin" && <div>Admin Dashboard</div>} */}
-            <Seeker />
-        </>
-    );
+    const user = await res.json();
+    const { role } = user.data;
+    if (role === "SEEKER") return <Seeker />;
+    if (role === "POSTER") return <Poster />;
+    if (role === "ADMIN") return <div>Admin Dashboard</div>;
 }
