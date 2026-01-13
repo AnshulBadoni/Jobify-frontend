@@ -16,7 +16,7 @@ const matchMetrics = [
 // --- DATA ---
 const closestJobs = [
     {
-        id: '1',
+        id: 1,
         company: 'Facebook',
         companyLogo: 'https://logo.clearbit.com/facebook.com',
         title: 'UI / UX Designer',
@@ -26,7 +26,7 @@ const closestJobs = [
         bgColor: '#E6EFFF'
     },
     {
-        id: '2',
+        id: 2,
         company: 'X',
         companyLogo: '', // Handled by Icon component
         title: 'Java Developer',
@@ -36,7 +36,7 @@ const closestJobs = [
         bgColor: '#DDF7F2'
     },
     {
-        id: '3',
+        id: 3,
         company: 'Instagram',
         companyLogo: 'https://logo.clearbit.com/instagram.com',
         title: 'Content Writer',
@@ -46,7 +46,7 @@ const closestJobs = [
         bgColor: '#FCEAF3'
     },
     {
-        id: '4',
+        id: 4,
         company: 'Reddit',
         companyLogo: 'https://logo.clearbit.com/reddit.com',
         title: 'Blockchain Developer',
@@ -56,7 +56,7 @@ const closestJobs = [
         bgColor: '#EBE5FA'
     },
     {
-        id: '5',
+        id: 5,
         company: 'Discord',
         companyLogo: 'https://logo.clearbit.com/discord.com',
         title: 'Product Manager',
@@ -66,7 +66,7 @@ const closestJobs = [
         bgColor: '#EFF4F8'
     },
     {
-        id: '6',
+        id: 6,
         company: 'Dribbble',
         companyLogo: 'https://logo.clearbit.com/dribbble.com',
         title: '2D Artist',

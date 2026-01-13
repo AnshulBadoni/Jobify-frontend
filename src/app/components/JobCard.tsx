@@ -20,7 +20,7 @@ const BrandIcon = ({ name, src }: { name: string, src: string }) => {
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
     const theme = useMemo(() => {
         // Generate a deterministic random-like index based on job ID
-        const idNum = parseInt(job.id) || 0;
+        const idNum = Number(job.id) || 0;
 
         // Theme palette: Light Mode (Pastels) & Dark Mode (Gradients)
         const schemes = [
