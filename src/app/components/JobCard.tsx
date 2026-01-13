@@ -1,100 +1,101 @@
-"use client";
-import React from "react";
-import { MapPin, Briefcase, Wallet, Clock, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import React, { useMemo } from 'react';
+import { Job } from '../types';
+import { Bookmark } from 'lucide-react';
 
 interface JobCardProps {
-    logo: string;
-    company: string;
-    title: string;
-    location: string;
-    salary: string;
-    type: string;
-    posted: string;
-    status?: "Pending" | "Interview" | "Rejected";
-    href?: string;
+    job: Job;
 }
 
-export default function JobCard({
-    logo,
-    company,
-    title,
-    location,
-    salary,
-    type,
-    posted,
-    status,
-    href = "#",
-}: JobCardProps) {
-    const getStatusColor = (status: JobCardProps["status"]) => {
-        switch (status) {
-            case "Pending":
-                return "bg-yellow-100/60 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300";
-            case "Interview":
-                return "bg-blue-100/60 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300";
-            case "Rejected":
-                return "bg-red-100/60 text-red-700 dark:bg-red-900/40 dark:text-red-300";
-            default:
-                return "";
-        }
-    };
+const BrandIcon = ({ name, src }: { name: string, src: string }) => {
+    if (name === 'X') {
+        return (
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+        );
+    }
+    return <img src={src} alt={name} className="w-7 h-7 object-contain" />;
+};
+
+const JobCard: React.FC<JobCardProps> = ({ job }) => {
+    const theme = useMemo(() => {
+        // Generate a deterministic random-like index based on job ID
+        const idNum = parseInt(job.id) || 0;
+
+        // Theme palette: Light Mode (Pastels) & Dark Mode (Gradients)
+        const schemes = [
+            {
+                light: 'bg-[#E6EFFF]',
+                dark: 'dark:bg-gradient-to-br dark:from-blue-900/60 dark:to-[#0f1115] dark:border-blue-800/20'
+            },
+            {
+                light: 'bg-[#DDF7F2]',
+                dark: 'dark:bg-gradient-to-br dark:from-emerald-900/60 dark:to-[#0f1115] dark:border-emerald-800/20'
+            },
+            {
+                light: 'bg-[#FCEAF3]',
+                dark: 'dark:bg-gradient-to-br dark:from-pink-900/60 dark:to-[#0f1115] dark:border-pink-800/20'
+            },
+            {
+                light: 'bg-[#EBE5FA]',
+                dark: 'dark:bg-gradient-to-br dark:from-violet-900/60 dark:to-[#0f1115] dark:border-violet-800/20'
+            },
+            {
+                light: 'bg-[#EFF4F8]',
+                dark: 'dark:bg-gradient-to-br dark:from-slate-800/80 dark:to-[#0f1115] dark:border-slate-700/20'
+            },
+            {
+                light: 'bg-[#FFF0DB]',
+                dark: 'dark:bg-gradient-to-br dark:from-orange-900/60 dark:to-[#0f1115] dark:border-orange-800/20'
+            }
+        ];
+
+        return schemes[idNum % schemes.length];
+    }, [job.id]);
 
     return (
-        <div className="group flex flex-col justify-between h-full rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-500">
-            {/* Header */}
-            <div className="flex items-start gap-4 p-6 border-b border-gray-100 dark:border-neutral-800">
-                <img
-                    src={logo}
-                    alt={company}
-                    className="w-12 h-12 rounded-xl object-contain border border-gray-100 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-1"
-                />
-                <div className="flex-1">
-                    <h3 className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 transition">
-                        {title}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{company}</p>
+        <div
+            className={`rounded-lg min-w-96 p-8 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none dark:border ${theme.light} ${theme.dark} border-transparent`}
+        >
+            <div className="flex justify-between items-start">
+                <div className="w-8 h-8 mb-2 bg-white rounded-full flex items-center justify-center">
+                    <BrandIcon name={job.company} src={job.companyIcon} />
                 </div>
-                {status && (
+                <button className="text-gray-900 transition-opacity hover:opacity-60">
+                    <Bookmark className="w-6 h-6" strokeWidth={1.8} />
+                </button>
+            </div>
+
+            <div className="mb-">
+                <h3 className="text-lg font-bold text-gray-900 leading-tight mb-3">
+                    {job.title}
+                </h3>
+                <p className="text-sm text-gray-600 font-medium leading-relaxed mb-4">
+                    {job.description}
+                </p>
+            </div>
+
+            <div className="flex gap-3 mb-6">
+                {job.tags.map((tag, index) => (
                     <span
-                        className={`text-xs px-2 py-0.5 font-medium rounded-full ${getStatusColor(
-                            status
-                        )}`}
+                        key={index}
+                        className="px-3 py-2 bg-white rounded-xl text-xs font-bold text-gray-900 tracking-wide whitespace-nowrap"
                     >
-                        {status}
+                        {tag}
                     </span>
-                )}
+                ))}
             </div>
 
-            {/* Details */}
-            <div className="grid grid-cols-2 gap-x-4 gap-y-3 px-6 py-4 text-sm">
-                <InfoRow icon={<MapPin className="w-4 h-4 text-gray-400" />} label={location} />
-                <InfoRow icon={<Wallet className="w-4 h-4 text-gray-400" />} label={salary} />
-                <InfoRow icon={<Briefcase className="w-4 h-4 text-gray-400" />} label={type} />
-                <InfoRow icon={<Clock className="w-4 h-4 text-gray-400" />} label={`Posted ${posted}`} />
-            </div>
-
-            {/* Footer */}
-            <div className="flex justify-between items-center px-6 py-4 border-t border-gray-100 dark:border-neutral-800">
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                    Updated recently
-                </span>
-                <Link
-                    href={href}
-                    className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 hover:shadow-md transition"
-                >
-                    View Job
-                    <ArrowRight className="w-4 h-4" />
-                </Link>
+            <div className="mt-auto grid grid-cols-2 gap-4">
+                <button className="h-10 rounded-xl border-[1.5px] border-gray-900 text-sm font-bold text-gray-900 hover:bg-white/50 transition-colors">
+                    Details
+                </button>
+                <button className="h-10 rounded-xl bg-black text-sm font-bold text-white hover:bg-gray-800 transition-colors">
+                    Apply Now
+                </button>
             </div>
         </div>
     );
-}
+};
 
-function InfoRow({ icon, label }: { icon: React.ReactNode; label: string }) {
-    return (
-        <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 truncate">
-            {icon}
-            <span>{label}</span>
-        </div>
-    );
-}
+export default JobCard;

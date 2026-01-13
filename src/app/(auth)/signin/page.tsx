@@ -410,7 +410,7 @@ export default function SignIn() {
                                         <button
                                             type="submit"
                                             disabled={loading || success || !isFormValid}
-                                            className="w-full h-11 bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-700 hover:to-violet-600 disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold rounded-xl transition-all disabled:cursor-not-allowed shadow-lg shadow-violet-200 disabled:shadow-gray-200"
+                                            className="w-full h-11 bg-gradient-to-r from-violet-600 to-violet-500 hover:from-violet-700 hover:to-violet-600 disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold rounded-xl transition-all disabled:cursor-not-allowed "
                                         >
                                             {loading ? (
                                                 <span className="flex items-center justify-center gap-2">
@@ -421,9 +421,9 @@ export default function SignIn() {
                                                     Signing in...
                                                 </span>
                                             ) : success ? (
-                                                "Success! →"
+                                                "Success!"
                                             ) : (
-                                                "Sign in →"
+                                                "Sign in"
                                             )}
                                         </button>
 

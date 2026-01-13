@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,13 +11,11 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            <svg width="40" height="20" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 10C10 12.7614 7.76142 15 5 15C2.23858 15 0 12.7614 0 10C0 7.23858 2.23858 5 5 5C7.76142 5 10 7.23858 10 10Z" stroke="black" strokeWidth="2" />
-              <path d="M25 10C25 12.7614 22.7614 15 20 15C17.2386 15 15 12.7614 15 10C15 7.23858 17.2386 5 20 5C22.7614 5 25 7.23858 25 10Z" stroke="black" strokeWidth="2" />
-              <path d="M40 10C40 12.7614 37.7614 15 35 15C32.2386 15 30 12.7614 30 10C30 7.23858 32.2386 5 35 5C37.7614 5 40 7.23858 40 10Z" stroke="black" strokeWidth="2" />
-            </svg>
-          </div>
+          <Link href="/" className="inline-flex items-baseline gap-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <span className="text-2xl font-bold text-gray-900">Dev</span>
+            <span className="text-2xl font-bold text-violet-600">mind</span>
+            <div className="w-1.5 h-1.5 bg-violet-600 rounded-full mb-1.5"></div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:block">
@@ -28,11 +27,14 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* Auth Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <button className="bg-primary hover:bg-violet-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-glow text-sm">
-              Join with Us!
-            </button>
+          {/* Auth Buttons - Right side */}
+          <div className="hidden md:flex items-center gap-2">
+            <Link href="/signin" className="text-dark hover:text-violet-600 hover:border-violet-600 border border-gray-400 px-6 py-2 rounded-full font-medium transition-all text-sm">
+              SignIn
+            </Link>
+            <Link href="/register" className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-full font-medium transition-all shadow-glow text-sm">
+              SignUp
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -55,8 +57,13 @@ const Navbar: React.FC = () => {
             <a href="#" className="text-dark block px-3 py-2 rounded-md text-base font-medium">Companies</a>
             <a href="#" className="text-dark block px-3 py-2 rounded-md text-base font-medium">Why Connect?</a>
             <a href="#" className="text-dark block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-            <div className="mt-4 pt-4 border-t border-gray-100">
-              <button className="bg-primary text-white w-full py-3 rounded-full font-medium">Join with Us!</button>
+            <div className="mt-4 pt-4 border-t border-gray-100 space-y-3">
+              <button className="text-dark hover:text-primary border border-gray-200 hover:border-primary w-full py-2 rounded-full font-medium text-sm">
+                Login
+              </button>
+              <button className="bg-primary text-white w-full py-2 rounded-full font-medium text-sm">
+                Register
+              </button>
             </div>
           </div>
         </div>

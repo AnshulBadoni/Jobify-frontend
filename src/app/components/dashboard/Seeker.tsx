@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "@/app/components/Header";
 import ProfilePreview from "@/app/components/ProfilePreview";
 import { getMe } from "@/app/api/profile";
+import JobCard from "../JobCard";
 
 // --- 1. ORIGINAL METRICS (UNCHANGED) ---
 const matchMetrics = [
@@ -14,13 +15,67 @@ const matchMetrics = [
 
 // --- DATA ---
 const closestJobs = [
-    { id: 1, company: "Google", role: "Frontend Engineer", location: "San Francisco", type: "Full-time", salary: "$150k - $180k", experience: "3-5y", logo: "https://logo.clearbit.com/google.com", tags: ["React", "TypeScript"], match: 98 },
-    { id: 2, company: "Amazon", role: "AI Developer", location: "Seattle", type: "Full-time", salary: "$160k - $200k", experience: "5-7y", logo: "https://logo.clearbit.com/amazon.com", tags: ["Python", "AWS"], match: 95 },
-    { id: 3, company: "Netflix", role: "Data Scientist", location: "Remote", type: "Contract", salary: "$110k - $140k", experience: "2-4y", logo: "https://logo.clearbit.com/netflix.com", tags: ["Data", "SQL"], match: 92 },
-    { id: 4, company: "Airbnb", role: "Product Designer", location: "Remote", type: "Full-time", salary: "$130k - $150k", experience: "4-6y", logo: "https://logo.clearbit.com/airbnb.com", tags: ["Figma", "UX"], match: 88 },
-    { id: 5, company: "Stripe", role: "Backend Engineer", location: "Remote", type: "Full-time", salary: "$170k - $190k", experience: "3-6y", logo: "https://logo.clearbit.com/stripe.com", tags: ["Go", "Java"], match: 85 },
+    {
+        id: '1',
+        company: 'Facebook',
+        companyLogo: 'https://logo.clearbit.com/facebook.com',
+        title: 'UI / UX Designer',
+        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
+        applyEmail: '[email protected]',
+        tags: ['Full - Time', 'Mid - Level'],
+        bgColor: '#E6EFFF'
+    },
+    {
+        id: '2',
+        company: 'X',
+        companyLogo: '', // Handled by Icon component
+        title: 'Java Developer',
+        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
+        applyEmail: '[email protected]',
+        tags: ['Full - Time', 'Mid - Level'],
+        bgColor: '#DDF7F2'
+    },
+    {
+        id: '3',
+        company: 'Instagram',
+        companyLogo: 'https://logo.clearbit.com/instagram.com',
+        title: 'Content Writer',
+        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
+        applyEmail: '[email protected]',
+        tags: ['Full - Time', 'Mid - Level'],
+        bgColor: '#FCEAF3'
+    },
+    {
+        id: '4',
+        company: 'Reddit',
+        companyLogo: 'https://logo.clearbit.com/reddit.com',
+        title: 'Blockchain Developer',
+        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
+        applyEmail: '[email protected]',
+        tags: ['Full - Time', 'Mid - Level'],
+        bgColor: '#EBE5FA'
+    },
+    {
+        id: '5',
+        company: 'Discord',
+        companyLogo: 'https://logo.clearbit.com/discord.com',
+        title: 'Product Manager',
+        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
+        applyEmail: '[email protected]',
+        tags: ['Full - Time', 'Mid - Level'],
+        bgColor: '#EFF4F8'
+    },
+    {
+        id: '6',
+        company: 'Dribbble',
+        companyLogo: 'https://logo.clearbit.com/dribbble.com',
+        title: '2D Artist',
+        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
+        applyEmail: '[email protected]',
+        tags: ['Full - Time', 'Mid - Level'],
+        bgColor: '#FFF0DB'
+    }
 ];
-
 const trendingJobs = [
     { id: 1, company: "Shopify", role: "Fullstack Developer", location: "Remote", salary: "$140k", type: "Full-time", logo: "https://logo.clearbit.com/shopify.com", applicants: 124 },
     { id: 2, company: "Amazon", role: "AI Engineer", location: "Seattle", salary: "$180k", type: "Full-time", logo: "https://logo.clearbit.com/amazon.com", applicants: 89 },
@@ -84,34 +139,37 @@ export default function Dashboard() {
                             </div>
                             <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
                                 {closestJobs.map((job) => (
-                                    <div
-                                        key={job.id}
-                                        className="min-w-[280px] snap-start flex-shrink-0 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-xl p-4 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all cursor-pointer group relative"
-                                    >
-                                        {/* Match Score */}
-                                        <div className="absolute top-4 right-4">
-                                            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 px-2 py-1 rounded-full border border-emerald-100 dark:border-emerald-900">
-                                                {job.match}% Match
-                                            </span>
-                                        </div>
+                                    // <div
+                                    //     key={job.id}
+                                    //     className="min-w-[280px] snap-start flex-shrink-0 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-xl p-4 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all cursor-pointer group relative"
+                                    // >
+                                    //     {/* Match Score */}
+                                    //     <div className="absolute top-4 right-4">
+                                    //         <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 px-2 py-1 rounded-full border border-emerald-100 dark:border-emerald-900">
+                                    //             {job.match}% Match
+                                    //         </span>
+                                    //     </div>
 
-                                        <img src={job.logo} alt={job.company} className="w-10 h-10 rounded-lg object-contain border border-gray-100 dark:border-neutral-700 bg-white mb-3" />
+                                    //     <img src={job.logo} alt={job.company} className="w-10 h-10 rounded-lg object-contain border border-gray-100 dark:border-neutral-700 bg-white mb-3" />
 
-                                        <h3 className="font-bold text-gray-900 dark:text-white text-sm">{job.role}</h3>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3 font-medium">{job.company}</p>
+                                    //     <h3 className="font-bold text-gray-900 dark:text-white text-sm">{job.role}</h3>
+                                    //     <p className="text-xs text-gray-500 dark:text-gray-400 mb-3 font-medium">{job.company}</p>
 
-                                        <div className="flex gap-2 mb-4">
-                                            {job.tags.map((tag, i) => (
-                                                <span key={i} className="text-[10px] font-medium px-2 py-1 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 rounded border border-slate-100 dark:border-neutral-700">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
+                                    //     <div className="flex gap-2 mb-4">
+                                    //         {job.tags.map((tag, i) => (
+                                    //             <span key={i} className="text-[10px] font-medium px-2 py-1 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 rounded border border-slate-100 dark:border-neutral-700">
+                                    //                 {tag}
+                                    //             </span>
+                                    //         ))}
+                                    //     </div>
 
-                                        <div className="pt-3 border-t border-gray-100 dark:border-neutral-800 flex justify-between items-center">
-                                            <span className="text-xs font-bold text-slate-900 dark:text-white">{job.salary}</span>
-                                            <span className="text-[10px] text-slate-400">{job.location}</span>
-                                        </div>
+                                    //     <div className="pt-3 border-t border-gray-100 dark:border-neutral-800 flex justify-between items-center">
+                                    //         <span className="text-xs font-bold text-slate-900 dark:text-white">{job.salary}</span>
+                                    //         <span className="text-[10px] text-slate-400">{job.location}</span>
+                                    //     </div>
+                                    // </div>
+                                    <div key={job.id}>
+                                        <JobCard job={job as any} />
                                     </div>
                                 ))}
                             </div>
