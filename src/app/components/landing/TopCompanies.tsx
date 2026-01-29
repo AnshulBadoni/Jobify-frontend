@@ -5,10 +5,10 @@ const TopCompanies: React.FC = () => {
    return (
       <div id="companies" className="bg-white pb-20 lg:pb-32">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-12 lg:mb-16 gap-8 lg:gap-10">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-8 lg:gap-10">
                <div className="max-w-xl w-full">
                   <p className="text-gray-400 text-sm font-medium mb-3 uppercase tracking-wider">Top Companies</p>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-dark leading-tight">Best Places to<br />Work 2024</h2>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-dark leading-tight">Best Places to<br />Work 2026</h2>
                </div>
                <div className="w-full lg:w-auto">
                   <p className="text-sm text-gray-400 mb-6 max-w-sm leading-relaxed font-medium">Leverage the job finder's company review section to gain insights into employee experiences at different companies.</p>

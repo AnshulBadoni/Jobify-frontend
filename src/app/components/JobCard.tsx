@@ -14,7 +14,7 @@ const BrandIcon = ({ name, src }: { name: string, src: string }) => {
             </svg>
         );
     }
-    return <img src={src} alt={name} className="w-7 h-7 object-contain" />;
+    return <img src={src} alt={name} className="w-5 h-5 object-contain" />;
 };
 
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
@@ -26,27 +26,27 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
         const schemes = [
             {
                 light: 'bg-[#E6EFFF]',
-                dark: 'dark:bg-gradient-to-br dark:from-blue-900/60 dark:to-[#0f1115] dark:border-blue-800/20'
+                dark: 'dark:bg-neutral-900'
             },
             {
                 light: 'bg-[#DDF7F2]',
-                dark: 'dark:bg-gradient-to-br dark:from-emerald-900/60 dark:to-[#0f1115] dark:border-emerald-800/20'
+                dark: 'dark:bg-neutral-900'
             },
             {
                 light: 'bg-[#FCEAF3]',
-                dark: 'dark:bg-gradient-to-br dark:from-pink-900/60 dark:to-[#0f1115] dark:border-pink-800/20'
+                dark: 'dark:bg-neutral-900'
             },
             {
                 light: 'bg-[#EBE5FA]',
-                dark: 'dark:bg-gradient-to-br dark:from-violet-900/60 dark:to-[#0f1115] dark:border-violet-800/20'
+                dark: 'dark:bg-neutral-900'
             },
             {
                 light: 'bg-[#EFF4F8]',
-                dark: 'dark:bg-gradient-to-br dark:from-slate-800/80 dark:to-[#0f1115] dark:border-slate-700/20'
+                dark: 'dark:bg-neutral-900'
             },
             {
                 light: 'bg-[#FFF0DB]',
-                dark: 'dark:bg-gradient-to-br dark:from-orange-900/60 dark:to-[#0f1115] dark:border-orange-800/20'
+                dark: 'dark:bg-neutral-900'
             }
         ];
 
@@ -55,22 +55,23 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
 
     return (
         <div
-            className={`rounded-lg min-w-96 p-8 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none dark:border ${theme.light} ${theme.dark} border-transparent`}
+            className={`rounded-xl min-w-80 p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 shadow-sm dark:shadow-none dark:border ${theme.light} ${theme.dark} border-transparent`}
         >
             <div className="flex justify-between items-start">
-                <div className="w-8 h-8 mb-2 bg-white rounded-full flex items-center justify-center">
-                    <BrandIcon name={job.company} src={job.companyIcon} />
+                <div className="w-8 h-8 mb-2 p-2 bg-white rounded-full flex items-center justify-center">
+                    {/* <BrandIcon name={job.company} src={job.companyIcon} /> */}
+                    <img src={job.companyIcon} alt={job.company} className="w-5 h-5 object-contain" />
                 </div>
                 <button className="text-gray-900 transition-opacity hover:opacity-60">
                     <Bookmark className="w-6 h-6" strokeWidth={1.8} />
                 </button>
             </div>
 
-            <div className="mb-">
-                <h3 className="text-lg font-bold text-gray-900 leading-tight mb-3">
+            <div className="">
+                <h3 className="text-md font-bold text-gray-900 dark:text-gray-200 leading-tight mb-3">
                     {job.title}
                 </h3>
-                <p className="text-sm text-gray-600 font-medium leading-relaxed mb-4">
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-medium leading-relaxed mb-4">
                     {job.description}
                 </p>
             </div>
@@ -79,18 +80,18 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
                 {job.tags.map((tag, index) => (
                     <span
                         key={index}
-                        className="px-3 py-2 bg-white rounded-xl text-xs font-bold text-gray-900 tracking-wide whitespace-nowrap"
+                        className="px-3 py-2 bg-white dark:bg-gray-400 rounded-lg text-xs font-bold text-gray-900 tracking-wide whitespace-nowrap"
                     >
                         {tag}
                     </span>
                 ))}
             </div>
 
-            <div className="mt-auto grid grid-cols-2 gap-4">
-                <button className="h-10 rounded-xl border-[1.5px] border-gray-900 text-sm font-bold text-gray-900 hover:bg-white/50 transition-colors">
+            <div className="mt-auto grid grid-cols-2 gap-2">
+                <button className="h-8 rounded-md border-[1.5px] border-gray-900 dark:border-gray-200 text-xs font-bold text-gray-900 dark:text-gray-200 hover:bg-white/50 transition-colors">
                     Details
                 </button>
-                <button className="h-10 rounded-xl bg-black text-sm font-bold text-white hover:bg-gray-800 transition-colors">
+                <button className="h-8 rounded-md bg-black dark:bg-black text-xs font-bold text-white hover:bg-gray-800 transition-colors">
                     Apply Now
                 </button>
             </div>

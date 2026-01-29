@@ -16,7 +16,7 @@ export default async function LandingLayout({ children }: { children: React.Reac
     // Token exists, fetch user data server-side
     let user = null;
     // const url = process.env.API_URL
-    const url = "http://192.168.5.148:3001";
+    const url = "https://jobify-backend-pgum.onrender.com";
     try {
         const res = await fetch(`${url}/profile/getMe`, {
             headers: { cookie: `jwt=${token}` },

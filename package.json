@@ -8,6 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-common-types": "^7.1.0",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.542.0",
     "next": "15.5.9",

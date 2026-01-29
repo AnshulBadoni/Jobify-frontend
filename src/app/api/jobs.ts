@@ -1,7 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL + '/jobs';
 
-export const getJobs = async () => {
-    const response = await fetch(`${API_URL}/me`, {
+export const listJobs = async (page: number = 1, limit: number = 10) => {
+    const response = await fetch(`${API_URL}/listJobs?page=${page}&limit=${limit}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

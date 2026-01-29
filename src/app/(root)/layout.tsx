@@ -1,7 +1,7 @@
 // app/(seeker)/layout.tsx
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Navbar from "../components/Navbar";
+import { Navbar } from "../components/Navbar";
 import { ToastProvider } from "../context/toastContext";
 import FloatingWidget from "../components/FloatingWidget";
 
@@ -12,7 +12,7 @@ export default async function SeekerLayout({ children }: { children: React.React
 
   let user = null;
   try {
-    console.log(token,"token")
+    console.log(token, "token")
     const res = await fetch(`${url}/profile/me`, {
       headers: { cookie: `jwt=${token}` },
       cache: "no-cache",

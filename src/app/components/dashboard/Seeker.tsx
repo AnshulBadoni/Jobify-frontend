@@ -4,6 +4,8 @@ import Header from "@/app/components/Header";
 import ProfilePreview from "@/app/components/ProfilePreview";
 import { getMe } from "@/app/api/profile";
 import JobCard from "../JobCard";
+import JobCardWhite from "../JobCardWhite";
+import { listJobs } from "@/app/api/jobs";
 
 // --- 1. ORIGINAL METRICS (UNCHANGED) ---
 const matchMetrics = [
@@ -13,84 +15,53 @@ const matchMetrics = [
     { label: "Job Matches", value: 12, description: "Jobs that match your profile this week", progress: 60, trend: -1 },
 ];
 
-// --- DATA ---
-const closestJobs = [
+const trendingJob = [
     {
-        id: 1,
-        company: 'Facebook',
-        companyLogo: 'https://logo.clearbit.com/facebook.com',
-        title: 'UI / UX Designer',
-        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
-        applyEmail: '[email protected]',
-        tags: ['Full - Time', 'Mid - Level'],
-        bgColor: '#E6EFFF'
+        id: '1',
+        company: 'Myntra',
+        companyIcon: 'https://logo.clearbit.com/myntra.com',
+        title: 'Senior Visual Designer',
+        location: 'Noida, India',
+        isRemote: true,
+        salaryRange: '25k/month - 35k/month',
+        postedAt: '2 Weeks Ago',
+        matchPercentage: 54,
     },
     {
-        id: 2,
-        company: 'X',
-        companyLogo: '', // Handled by Icon component
-        title: 'Java Developer',
-        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
-        applyEmail: '[email protected]',
-        tags: ['Full - Time', 'Mid - Level'],
-        bgColor: '#DDF7F2'
+        id: '2',
+        company: 'Spotify',
+        companyIcon: 'https://logo.clearbit.com/spotify.com',
+        title: 'Product Designer',
+        location: 'Bangalore, India',
+        isRemote: true,
+        salaryRange: '45k/month - 65k/month',
+        postedAt: '3 Days Ago',
+        matchPercentage: 82,
     },
     {
-        id: 3,
-        company: 'Instagram',
-        companyLogo: 'https://logo.clearbit.com/instagram.com',
-        title: 'Content Writer',
-        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
-        applyEmail: '[email protected]',
-        tags: ['Full - Time', 'Mid - Level'],
-        bgColor: '#FCEAF3'
-    },
-    {
-        id: 4,
-        company: 'Reddit',
-        companyLogo: 'https://logo.clearbit.com/reddit.com',
-        title: 'Blockchain Developer',
-        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
-        applyEmail: '[email protected]',
-        tags: ['Full - Time', 'Mid - Level'],
-        bgColor: '#EBE5FA'
-    },
-    {
-        id: 5,
-        company: 'Discord',
-        companyLogo: 'https://logo.clearbit.com/discord.com',
-        title: 'Product Manager',
-        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
-        applyEmail: '[email protected]',
-        tags: ['Full - Time', 'Mid - Level'],
-        bgColor: '#EFF4F8'
-    },
-    {
-        id: 6,
-        company: 'Dribbble',
-        companyLogo: 'https://logo.clearbit.com/dribbble.com',
-        title: '2D Artist',
-        description: 'Design intuitive interfaces for our fintech app. Strong portfolio & Figma skills required.',
-        applyEmail: '[email protected]',
-        tags: ['Full - Time', 'Mid - Level'],
-        bgColor: '#FFF0DB'
+        id: '3',
+        company: 'Airbnb',
+        companyIcon: 'https://logo.clearbit.com/airbnb.com',
+        title: 'UX Researcher',
+        location: 'Gurugram, India',
+        isRemote: false,
+        salaryRange: '30k/month - 50k/month',
+        postedAt: '1 Week Ago',
+        matchPercentage: 65,
     }
 ];
-const trendingJobs = [
-    { id: 1, company: "Shopify", role: "Fullstack Developer", location: "Remote", salary: "$140k", type: "Full-time", logo: "https://logo.clearbit.com/shopify.com", applicants: 124 },
-    { id: 2, company: "Amazon", role: "AI Engineer", location: "Seattle", salary: "$180k", type: "Full-time", logo: "https://logo.clearbit.com/amazon.com", applicants: 89 },
-    { id: 3, company: "Netflix", role: "Data Scientist", location: "Remote", salary: "$150k", type: "Contract", logo: "https://logo.clearbit.com/netflix.com", applicants: 205 },
-    { id: 4, company: "Airbnb", role: "Product Designer", location: "SF", salary: "$135k", type: "Full-time", logo: "https://logo.clearbit.com/airbnb.com", applicants: 56 },
-];
+
 
 export default function Dashboard() {
     const [isAnimated, setIsAnimated] = useState(false);
     const [me, setMe] = useState<any>({ id: -1, username: "", email: "", role: "" });
     const [showModal, setShowModal] = useState(true);
+    const [closestJobs, setClosestJobs] = useState<any[]>([]);
 
     useEffect(() => {
         setIsAnimated(true);
         myDataFetch();
+        getClosestJobs();
     }, []);
 
     const myDataFetch = async () => {
@@ -98,6 +69,12 @@ export default function Dashboard() {
         if (resp.status != 200) return;
         setMe(resp?.data);
     };
+
+    const getClosestJobs = async () => {
+        const resp = await listJobs();
+        if (resp.status != 200) return;
+        setClosestJobs(resp?.data);
+    }
 
     return (
         <section className="font-sans min-h-screen mb-2">
@@ -119,7 +96,7 @@ export default function Dashboard() {
                                         {isPositive ? "▲" : "▼"} {Math.abs(metric.trend)}%
                                     </span>
                                 </div>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{metric.description}</p>
+                                <p className="text-sm hidden lg:flex text-gray-600 dark:text-gray-400 mt-1">{metric.description}</p>
                             </div>
                         );
                     })}
@@ -179,31 +156,11 @@ export default function Dashboard() {
                         <div className="bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 rounded-xl p-5 shadow-sm">
                             <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Trending Now</h2>
                             <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
-                                {trendingJobs.map((job) => (
+                                {trendingJob.map((job) => (
                                     <div
                                         key={job.id}
-                                        className="min-w-[260px] snap-start flex-shrink-0 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-xl p-5 hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-800 transition-all cursor-pointer"
                                     >
-                                        <div className="flex items-start justify-between mb-3">
-                                            <div className="w-10 h-10 rounded-lg bg-gray-50 dark:bg-neutral-800 flex items-center justify-center border border-gray-100 dark:border-neutral-700">
-                                                <img src={job.logo} alt={job.company} className="w-6 h-6 object-contain" />
-                                            </div>
-                                            <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-1 rounded-full flex items-center gap-1">
-                                                🔥 {job.applicants} applied
-                                            </span>
-                                        </div>
-
-                                        <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-1 truncate">{job.role}</h3>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{job.company}</p>
-
-                                        <div className="flex gap-2">
-                                            <span className="text-[10px] font-medium px-2 py-1 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 rounded border border-slate-100 dark:border-neutral-700">
-                                                {job.type}
-                                            </span>
-                                            <span className="text-[10px] font-medium px-2 py-1 bg-slate-50 dark:bg-neutral-800 text-slate-600 dark:text-slate-300 rounded border border-slate-100 dark:border-neutral-700">
-                                                {job.salary}
-                                            </span>
-                                        </div>
+                                        <JobCardWhite job={job as any} />
                                     </div>
                                 ))}
                             </div>

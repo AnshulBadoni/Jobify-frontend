@@ -58,9 +58,9 @@ const Navbar: React.FC = () => {
             <a href="#" className="text-dark block px-3 py-2 rounded-md text-base font-medium">Why Connect?</a>
             <a href="#" className="text-dark block px-3 py-2 rounded-md text-base font-medium">Contact</a>
             <div className="mt-4 pt-4 border-t border-gray-100 space-y-3">
-              <button className="text-dark hover:text-primary border border-gray-200 hover:border-primary w-full py-2 rounded-full font-medium text-sm">
-                Login
-              </button>
+             <Link href="/signin" className="text-dark hover:text-violet-600 hover:border-violet-600 border border-gray-400 px-6 py-2 rounded-full font-medium transition-all text-sm">
+              SignIn
+            </Link>
               <button className="bg-primary text-white w-full py-2 rounded-full font-medium text-sm">
                 Register
               </button>

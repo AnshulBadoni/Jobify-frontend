@@ -37,7 +37,7 @@ const Testimonials: React.FC = () => {
           <div className="w-full text-center lg:text-left order-2 lg:order-2">
             <p className="text-gray-400 text-sm font-bold uppercase tracking-wide mb-3">Connect's Users</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-dark mb-8 lg:mb-12 leading-tight">
-              What Our Users Say<br className="hidden lg:block" /> About Connect
+              What Our Founders Say<br className="hidden lg:block" /> About CrackJob
             </h2>
 
             {/* Navigation Buttons */}

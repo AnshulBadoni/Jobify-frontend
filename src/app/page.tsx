@@ -10,10 +10,13 @@ import WhyChooseUs from '../app/components/landing/WhyChooseUs';
 import Testimonials from '../app/components/landing/Testimonials';
 import FooterCTA from '../app/components/landing/FooterCTA';
 import Footer from '../app/components/landing/Footer';
+import CustomCursor from './components/landing/CustomCursor';
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-white font-sans text-dark">
+      <CustomCursor />
+
       <Navbar />
       <main>
         <Hero />

@@ -145,10 +145,10 @@ export const TESTIMONIALS = [
   },
   {
     id: 2,
-    name: "John Smith",
-    role: "Senior Developer",
+    name: "Shivam ",
+    role: "PhD Researcher",
     text: "The platform's UI is incredibly intuitive. I found a position that perfectly matches my skillset within days of signing up.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop"
+    image: "shivam.jpg"
   },
   {
     id: 3,

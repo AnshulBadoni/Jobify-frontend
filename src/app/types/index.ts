@@ -1,5 +1,5 @@
 export interface Job {
-    id: number;
+    id: number | string;
     title: string;
     company: string;
     description?: string;
@@ -193,4 +193,41 @@ export interface TableProps<T extends Record<string, any> = any> {
 export interface SortConfig {
     key: string;
     direction: "asc" | "desc";
+}
+
+
+
+
+
+
+
+// remove later
+import { LucideIcon } from 'lucide-react';
+
+export interface NavItem {
+    id: string;
+    label: string;
+    icon: LucideIcon;
+    href?: string;
+}
+
+export interface UserProfile {
+    name: string;
+    email: string;
+    avatarUrl: string;
+    status: 'online' | 'offline' | 'busy';
+}
+
+export interface Candidate {
+    id: string;
+    name: string;
+    handle: string;
+    avatarUrl: string;
+    role: string;
+}
+
+export interface Company {
+    id: string;
+    name: string;
+    logo: LucideIcon;
 }

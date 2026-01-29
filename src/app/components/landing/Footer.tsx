@@ -1,53 +1,139 @@
 import React from 'react';
-import { Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Youtube, Command } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white text-dark py-12 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-          
-          <div className="flex items-center gap-2">
-            <svg width="40" height="20" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 10C10 12.7614 7.76142 15 5 15C2.23858 15 0 12.7614 0 10C0 7.23858 2.23858 5 5 5C7.76142 5 10 7.23858 10 10Z" stroke="black" strokeWidth="2"/>
-              <path d="M25 10C25 12.7614 22.7614 15 20 15C17.2386 15 15 12.7614 15 10C15 7.23858 17.2386 5 20 5C22.7614 5 25 7.23858 25 10Z" stroke="black" strokeWidth="2"/>
-              <path d="M40 10C40 12.7614 37.7614 15 35 15C32.2386 15 30 12.7614 30 10C30 7.23858 32.2386 5 35 5C37.7614 5 40 7.23858 40 10Z" stroke="black" strokeWidth="2"/>
-            </svg>
-          </div>
+    <footer>
+    <div className="m-16 rounded-[3rem] bg-[#111111] pt-20 pb-10 px-4 sm:px-6 lg:px-8 mt-20">
+      <div className="max-w-[1400px] mx-auto">
 
-          <div className="flex gap-8 text-sm font-medium">
-             <a href="#" className="hover:text-primary">Find a Job</a>
-             <a href="#" className="hover:text-primary">Companies</a>
-             <a href="#" className="hover:text-primary">Why Connect?</a>
-             <a href="#" className="hover:text-primary">Contact</a>
-          </div>
+        {/* Main Red Container with Hard-Stop Curtain Gradient */}
+       <div
+  className="relative rounded-[3rem] p-12 lg:p-20 shadow-2xl overflow-hidden"
+  style={{
+    background: `linear-gradient(90deg,
+      #FF0015 0%,
+      #FF0015 10%,
 
-          <div className="flex gap-4">
-             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer text-gray-400">
-               <Instagram className="w-4 h-4" />
-             </div>
-             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer text-gray-400">
-               <Twitter className="w-4 h-4" />
-             </div>
-             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer text-gray-400">
-               <Linkedin className="w-4 h-4" />
-             </div>
-          </div>
+      #E50914 10%,
+      #E50914 18%,
 
+      #B20710 18%,
+      #B20710 28%,
+
+      #6A0007 28%,
+      #6A0007 38%,
+
+      #4A0005 38%,
+      #4A0005 50%,
+
+      #6A0007 50%,
+      #6A0007 62%,
+
+      #B20710 62%,
+      #B20710 72%,
+
+      #E50914 72%,
+      #E50914 82%,
+
+      #FF0015 82%,
+      #FF0015 100%
+    )`
+  }}
+>
+
+          {/* Content Grid */}
+          <div className="flex flex-col lg:flex-row justify-between gap-16 lg:gap-8 relative z-10">
+
+            {/* Left Section: Brand & Description */}
+            <div className="lg:w-[35%] space-y-8">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center transform rotate-12">
+                  <Command className="w-5 h-5 text-[#FF0015]" strokeWidth={3} />
+                </div>
+                <span className="text-3xl font-bold text-white tracking-tight">Elevate</span>
+              </div>
+
+              <p className="text-white text-lg leading-relaxed font-medium">
+                Elevate helps teams collaborate faster and work smarter with our all-in-one project management platform. Trusted by over 10,000 companies worldwide.
+              </p>
+
+              <div className="flex gap-4 pt-4">
+                {[
+                  { icon: Linkedin, href: '#' },
+                  { icon: Facebook, href: '#' },
+                  { icon: Instagram, href: '#' },
+                  { icon: Youtube, href: '#' }
+                ].map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.href}
+                    className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform duration-200"
+                  >
+                    <social.icon size={20} strokeWidth={2.5} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Section: Navigation Columns */}
+            <div className="lg:w-[50%] flex flex-wrap justify-between gap-10 lg:pl-10 pt-2">
+
+              {/* Product Column */}
+              <div className="space-y-6 min-w-[140px]">
+                <h4 className="text-white font-bold text-xl">Product</h4>
+                <ul className="space-y-4">
+                  {['Features', 'Integrations', 'Pricing', 'Updates', 'Roadmap', 'Enterprise'].map((item) => (
+                    <li key={item}>
+                      <a href="#" className="text-white hover:text-white/80 transition-colors text-base font-medium block">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Company Column */}
+              <div className="space-y-6 min-w-[140px]">
+                <h4 className="text-white font-bold text-xl">Company</h4>
+                <ul className="space-y-4">
+                  {['About Us', 'Careers', 'Contact', 'Press Kit', 'Partners'].map((item) => (
+                    <li key={item}>
+                      <a href="#" className="text-white hover:text-white/80 transition-colors text-base font-medium block">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Resources Column */}
+              <div className="space-y-6 min-w-[140px]">
+                <h4 className="text-white font-bold text-xl">Resources</h4>
+                <ul className="space-y-4">
+                  {['Documentation', 'API Reference', 'Help Center', 'Blog'].map((item) => (
+                    <li key={item}>
+                      <a href="#" className="text-white hover:text-white/80 transition-colors text-base font-medium block">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-400 border-t border-gray-100 pt-8">
-           <p className="max-w-xs text-center md:text-left">Wellington Square, Oxford OX1 2JD, United Kingdom 85648 (+44 1865 270000)</p>
-           <div className="flex gap-6 mt-4 md:mt-0">
-             <p>© 2024 Connect. All rights reserved.</p>
-             <div className="flex gap-4">
-                <a href="#" className="hover:text-dark">Terms of Service</a>
-                <a href="#" className="hover:text-dark">Privacy Policy</a>
-                <a href="#" className="hover:text-dark">Partners</a>
-             </div>
-           </div>
+        {/* Copyright Section (Outside the Red Box) */}
+        <div className="mt-12 text-center">
+          <p className="text-white/60 text-sm font-medium">
+            &copy; {new Date().getFullYear()} Elevate Inc. All rights reserved.
+          </p>
         </div>
+
       </div>
+    </div>
     </footer>
   );
 };
